@@ -1,22 +1,19 @@
 # BigMac
 
-HEART is a script for monitoring port 80 (HTTP port) and recording all HTTP errors.
+BigMac is a script for changing mac address easily.
 
 ## Installation
 
-You have to use Debian based distributions for this script.
-
 ```bash
-git clone https://github.com/rotherda/HEART
+git clone https://github.com/rotherda/BigMac
 cd HEART
-chmod 777 install.sh
-./install.sh
+chmod 777 bigmac.sh
 ```
 
 ## Usage
 
 ```bash
-heart
+./bigmac.sh
 ```
 
 ## Contributing
