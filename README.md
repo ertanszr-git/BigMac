@@ -6,7 +6,7 @@ BigMac is a script for changing mac address easily.
 
 ```bash
 git clone https://github.com/rotherda/BigMac
-cd HEART
+cd BigMac
 chmod 777 bigmac.sh
 ```
 
