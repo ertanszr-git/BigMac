@@ -1,4 +1,4 @@
-#!/bin/bash
+#!usr/bin/env bash
 interface=$(ifconfig | cut -f 1 -d " " | head -n 1 | sed 's/://')
 printf "Please write a mac address what you want:\n"
 read selectedmac
