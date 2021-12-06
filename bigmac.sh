@@ -1,12 +1,8 @@
 #!usr/bin/env bash
 
 function randmac {
-hexchars="0123456789ABCDEF"
-for i in {1..12} ; do echo -n ${hexchars:$(( $RANDOM % 16 )):1} ; done | sed -e 's/\(..\)/:\1/g'
+hexdump -n 6 -ve '1/1 "%.2x "' /dev/random | awk -v a="2,6,a,e" -v r="$RANDOM" 'BEGIN{srand(r);}NR==1{split(a,b,",");r=int(rand()*4+1);printf "%s%s:%s:%s:%s:%s:%s\n",substr($1,0,1),b[r],$2,$3,$4,$5,$6}'
 }
-
-finalmac=$(randmac)
-finalmac=${finalmac#?}
 
 interface1=$(ifconfig | cut -f 1 -d " " | sed 's/://' | sed 's/lo//' | sed '/^$/d' | sed -n 1p)
 interface2=$(ifconfig | cut -f 1 -d " " | sed 's/://' | sed 's/lo//' | sed '/^$/d' | sed -n 2p)
@@ -18,55 +14,55 @@ read selint
 printf "Change Mac Address Randomly or Specific:\n1-Randomly\n2-Specific\n"
 read selopt
 
-if [$selint -eq 1] && [$selopt -eq 1] ; then
+if [ "$selint" = "1" ] && [ "$selopt" = "1" ] ; then
 	finalmac=$(randmac)
 	service NetworkManager stop
 	ifconfig $interface1 down
-	ifconfig $interface hw ether $finalmac
-	ifconfig $interface up
+	ifconfig $interface1 hw ether $finalmac
+	ifconfig $interface1 up
 	service NetworkManager start
 
-elif [$selint -eq 2] && [$selopt -eq 1]
+elif [ "$selint" = "2" ] && [ "$selopt" = "1" ] ; then
 	finalmac=$(randmac)
 	service NetworkManager stop
 	ifconfig $interface2 down
-	ifconfig $interface hw ether $finalmac
-	ifconfig $interface up
+	ifconfig $interface2 hw ether $finalmac
+	ifconfig $interface2 up
 	service NetworkManager start
-	
-elif [$selint -eq 3] && [$selopt -eq 1]
+
+elif [ "$selint" = "3" ] && [ "$selopt" = "1" ] ; then
 	finalmac=$(randmac)
 	service NetworkManager stop
 	ifconfig $interface3 down
-	ifconfig $interface hw ether $finalmac
-	ifconfig $interface up
+	ifconfig $interface3 hw ether $finalmac
+	ifconfig $interface3 up
 	service NetworkManager start
 
-elif [$selint -eq 1] && [$selopt -eq 2]
-	printf "Write a spesific mac address:\n"
+elif [ "$selint" = "1" ] && [ "$selopt" = "2" ] ; then
+	printf "Write a spesific mac address(You have to write even number first 8 byte):\n"
 	read spesificmac
 	service NetworkManager stop
 	ifconfig $interface1 down
-	ifconfig $interface hw ether $spesificmac
-	ifconfig $interface up
+	ifconfig $interface1 hw ether $spesificmac
+	ifconfig $interface1 up
 	service NetworkManager start
 
-elif [$selint -eq 2] && [$selopt -eq 2]
-	printf "Write a spesific mac address:\n"
+elif [ "$selint" = "2" ] && [ "$selopt" = "2" ] ; then
+	printf "Write a spesific mac address(You have to write even number first 8 byte):\n"
 	read spesificmac
 	service NetworkManager stop
 	ifconfig $interface2 down
-	ifconfig $interface hw ether $spesificmac
-	ifconfig $interface up
+	ifconfig $interface2 hw ether $spesificmac
+	ifconfig $interface2 up
 	service NetworkManager start
 
-elif [$selint -eq 3] && [$selopt -eq 2]
-	printf "Write a spesific mac address:\n"
+elif [ "$selint" = "3"] && ["$selopt" = "2" ] ; then
+	printf "Write a spesific mac address(You have to write even number first 8 byte):\n"
 	read spesificmac
 	service NetworkManager stop
 	ifconfig $interface3 down
-	ifconfig $interface hw ether $spesificmac
-	ifconfig $interface up
+	ifconfig $interface3 hw ether $spesificmac
+	ifconfig $interface3 up
 	service NetworkManager start
 
 else
