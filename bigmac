@@ -1,0 +1,4 @@
+cd /usr/share
+cd BigMac
+chmod 777 bigmac.sh
+./bigmac.sh
