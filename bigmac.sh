@@ -16,7 +16,7 @@ interface1=$(ifconfig | cut -f 1 -d " " | sed 's/://' | sed 's/lo//' | sed '/^$/
 interface2=$(ifconfig | cut -f 1 -d " " | sed 's/://' | sed 's/lo//' | sed '/^$/d' | sed -n 2p)
 interface3=$(ifconfig | cut -f 1 -d " " | sed 's/://' | sed 's/lo//' | sed '/^$/d' | sed -n 3p)
 
-printf "Select an Interface:\n1- $interface1\n2- $interface2\n3-$interface3\n"
+printf "${yellow}Select an Interface:\n1- $interface1\n2- $interface2\n3-$interface3\n${clear}"
 read selint
 
 printf "${yellow}Change Mac Address Randomly or Specific:\n1-Randomly\n2-Specific\n${clear}"
