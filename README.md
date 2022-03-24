@@ -1,4 +1,4 @@
-# BigMac
+# MacChanger - BigMac
 
 BigMac is a script for changing mac address easily.
 
