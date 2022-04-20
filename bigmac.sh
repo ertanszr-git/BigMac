@@ -29,7 +29,7 @@ if [ "$selint" = "1" ] && [ "$selopt" = "1" ] ; then
 	ifconfig $interface1 hw ether $finalmac
 	ifconfig $interface1 up
 	service NetworkManager start
-	printf "${green}Mac Changed Succesfully${clear}"
+	printf "${green}Mac Changed Succesfully. Your new mac address is $(ifconfig $interface1 | awk '{print $2}' | sed -n 4p)${clear}"
 
 elif [ "$selint" = "2" ] && [ "$selopt" = "1" ] ; then
 	finalmac=$(randmac)
@@ -38,7 +38,7 @@ elif [ "$selint" = "2" ] && [ "$selopt" = "1" ] ; then
 	ifconfig $interface2 hw ether $finalmac
 	ifconfig $interface2 up
 	service NetworkManager start
-	printf "${green}Mac Changed Succesfully${clear}"
+	printf "${green}Mac Changed Succesfully. Your new mac address is $(ifconfig $interface2 | awk '{print $2}' | sed -n 4p)${clear}"
 
 elif [ "$selint" = "3" ] && [ "$selopt" = "1" ] ; then
 	finalmac=$(randmac)
@@ -47,7 +47,7 @@ elif [ "$selint" = "3" ] && [ "$selopt" = "1" ] ; then
 	ifconfig $interface3 hw ether $finalmac
 	ifconfig $interface3 up
 	service NetworkManager start
-	printf "${green}Mac Changed Succesfully${clear}"
+	printf "${green}Mac Changed Succesfully. Your new mac address is $(ifconfig $interface3 | awk '{print $2}' | sed -n 4p)${clear}"
 
 elif [ "$selint" = "1" ] && [ "$selopt" = "2" ] ; then
 	printf "${yellow}Write a spesific mac address(You have to write even number first 8 byte):\n${clear}"
@@ -57,7 +57,7 @@ elif [ "$selint" = "1" ] && [ "$selopt" = "2" ] ; then
 	ifconfig $interface1 hw ether $spesificmac
 	ifconfig $interface1 up
 	service NetworkManager start
-	printf "${green}Mac Changed Succesfully${clear}"
+	printf "${green}Mac Changed Succesfully. Your new mac address is $(ifconfig $interface1 | awk '{print $2}' | sed -n 4p)${clear}"
 
 elif [ "$selint" = "2" ] && [ "$selopt" = "2" ] ; then
 	printf "${yellow}Write a spesific mac address(You have to write even number first 8 byte):\n${clear}"
@@ -67,7 +67,7 @@ elif [ "$selint" = "2" ] && [ "$selopt" = "2" ] ; then
 	ifconfig $interface2 hw ether $spesificmac
 	ifconfig $interface2 up
 	service NetworkManager start
-	printf "${green}Mac Changed Succesfully${clear}"
+	printf "${green}Mac Changed Succesfully. Your new mac address is $(ifconfig $interface2 | awk '{print $2}' | sed -n 4p)${clear}"
 
 elif [ "$selint" = "3"] && ["$selopt" = "2" ] ; then
 	printf "${yellow}Write a spesific mac address(You have to write even number first 8 byte):\n${clear}"
@@ -77,7 +77,7 @@ elif [ "$selint" = "3"] && ["$selopt" = "2" ] ; then
 	ifconfig $interface3 hw ether $spesificmac
 	ifconfig $interface3 up
 	service NetworkManager start
-	printf "${green}Mac Changed Succesfully${clear}"
+	printf "${green}Mac Changed Succesfully. Your new mac address is $(ifconfig $interface3 | awk '{print $2}' | sed -n 4p)${clear}"
 
 else
 	printf "${red}FATAL ERROR${clear}"
